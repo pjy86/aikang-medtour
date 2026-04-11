@@ -31,7 +31,11 @@ export default function AdminInquiries() {
     fetch('/api/contact')
       .then(res => res.json())
       .then(data => {
-        setInquiries(data);
+        if (Array.isArray(data)) {
+          setInquiries(data);
+        } else {
+          setError(data.error || 'Failed to load inquiries');
+        }
         setLoading(false);
       })
       .catch(err => {
