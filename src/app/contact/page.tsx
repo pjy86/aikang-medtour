@@ -1,38 +1,16 @@
 'use client'
 
-import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { 
   Phone, 
   Mail, 
   MessageCircle, 
-  MapPin, 
   Clock,
-  Send,
-  CheckCircle
+  Send
 } from 'lucide-react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    country: '',
-    service: '',
-    message: ''
-  })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -118,141 +96,109 @@ export default function Contact() {
 
               <div>
                 <div className="bg-gray-50 rounded-2xl p-8">
-                  {submitted ? (
-                    <div className="text-center py-12">
-                      <div className="w-20 h-20 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-10 h-10 text-accent-500" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h3>
-                      <p className="text-gray-600 mb-6">
-                        Your inquiry has been submitted successfully. Our medical team will review your case 
-                        and contact you within 24 hours.
-                      </p>
-                      <button
-                        onClick={() => setSubmitted(false)}
-                        className="text-primary-600 font-semibold hover:text-primary-700"
-                      >
-                        Submit Another Inquiry
-                      </button>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                    Send Us an Inquiry
+                  </h2>
+                  <form name="contact" method="POST" data-netlify="true" className="space-y-4">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                        placeholder="Enter your full name"
+                      />
                     </div>
-                  ) : (
-                    <>
-                      <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                        Send Us an Inquiry
-                      </h2>
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Full Name *
-                          </label>
-                          <input
-                            type="text"
-                            name="name"
-                            required
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                            placeholder="Enter your full name"
-                          />
-                        </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Email Address *
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              required
-                              value={formData.email}
-                              onChange={handleChange}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                              placeholder="your@email.com"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Phone/WhatsApp
-                            </label>
-                            <input
-                              type="tel"
-                              name="phone"
-                              value={formData.phone}
-                              onChange={handleChange}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                              placeholder="+1 234 567 8900"
-                            />
-                          </div>
-                        </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Phone/WhatsApp
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                          placeholder="+1 234 567 8900"
+                        />
+                      </div>
+                    </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Country *
-                            </label>
-                            <select
-                              name="country"
-                              required
-                              value={formData.country}
-                              onChange={handleChange}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                            >
-                              <option value="">Select country</option>
-                              <option value="United States">United States</option>
-                              <option value="Indonesia">Indonesia</option>
-                              <option value="Other">Other</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Service Interest
-                            </label>
-                            <select
-                              name="service"
-                              value={formData.service}
-                              onChange={handleChange}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                            >
-                              <option value="">Select service</option>
-                              <option value="Cardiac Surgery">Cardiac Surgery</option>
-                              <option value="Oncology">Oncology</option>
-                              <option value="Orthopedics">Orthopedics</option>
-                              <option value="Neurology">Neurology</option>
-                              <option value="Ophthalmology">Ophthalmology</option>
-                              <option value="Fertility">Fertility Treatment</option>
-                              <option value="General Surgery">General Surgery</option>
-                              <option value="Preventive Health">Preventive Health</option>
-                              <option value="Other">Other</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Your Message *
-                          </label>
-                          <textarea
-                            name="message"
-                            required
-                            rows={4}
-                            value={formData.message}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none"
-                            placeholder="Please describe your medical condition and what you're looking for..."
-                          ></textarea>
-                        </div>
-
-                        <button
-                          type="submit"
-                          className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white py-4 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Country *
+                        </label>
+                        <select
+                          name="country"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                         >
-                          <Send className="w-5 h-5" />
-                          <span>Submit Inquiry</span>
-                        </button>
-                      </form>
-                    </>
-                  )}
+                          <option value="">Select country</option>
+                          <option value="United States">United States</option>
+                          <option value="Indonesia">Indonesia</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Service Interest
+                        </label>
+                        <select
+                          name="service"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                        >
+                          <option value="">Select service</option>
+                          <option value="Cardiac Surgery">Cardiac Surgery</option>
+                          <option value="Oncology">Oncology</option>
+                          <option value="Orthopedics">Orthopedics</option>
+                          <option value="Neurology">Neurology</option>
+                          <option value="Ophthalmology">Ophthalmology</option>
+                          <option value="Fertility">Fertility Treatment</option>
+                          <option value="General Surgery">General Surgery</option>
+                          <option value="Preventive Health">Preventive Health</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Your Message *
+                      </label>
+                      <textarea
+                        name="message"
+                        required
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none"
+                        placeholder="Please describe your medical condition and what you're looking for..."
+                      ></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white py-4 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+                    >
+                      <Send className="w-5 h-5" />
+                      <span>Submit Inquiry</span>
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
