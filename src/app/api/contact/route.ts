@@ -1,10 +1,17 @@
 import {NextResponse} from 'next/server';
 import {neon} from '@neondatabase/serverless';
 
-const sql = neon(process.env.POSTGRES_URL!);
+function getSql() {
+  const connectionString = process.env.POSTGRES_URL;
+  if (!connectionString) {
+    throw new Error('POSTGRES_URL environment variable is not set');
+  }
+  return neon(connectionString);
+}
 
 export async function POST(request: Request) {
   try {
+    const sql = getSql();
     const body = await request.json();
     const {name, email, phone, country, service, message} = body;
 
@@ -27,7 +34,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error processing contact form:', error);
     return NextResponse.json(
-      {error: 'Internal server error', details: String(error)},
+      {error: 'Internal server error', details: String(error), name: error?.name, message: error?.message},
       {status: 500}
     );
   }
@@ -35,6 +42,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
+    const sql = getSql();
     const rows = await sql`
       SELECT * FROM inquiries ORDER BY created_at DESC
     `;
@@ -42,7 +50,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching inquiries:', error);
     return NextResponse.json(
-      {error: 'Internal server error', details: String(error)},
+      {error: 'Internal server error', details: String(error), name: error?.name, message: error?.message},
       {status: 500}
     );
   }
