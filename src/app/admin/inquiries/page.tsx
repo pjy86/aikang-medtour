@@ -29,18 +29,24 @@ export default function AdminInquiries() {
     }
 
     fetch('/api/contact')
-      .then(res => res.json())
+      .then(res => {
+        console.log('API response status:', res.status);
+        return res.json();
+      })
       .then(data => {
+        console.log('API response data:', data);
         if (Array.isArray(data)) {
           setInquiries(data);
+        } else if (data.error) {
+          setError(data.error + (data.details ? ` (${data.details})` : ''));
         } else {
-          setError(data.error || 'Failed to load inquiries');
+          setError('Invalid response format');
         }
         setLoading(false);
       })
       .catch(err => {
         console.error('Error fetching inquiries:', err);
-        setError('Failed to load inquiries');
+        setError('Network error: ' + err.message);
         setLoading(false);
       });
   }, [router]);
