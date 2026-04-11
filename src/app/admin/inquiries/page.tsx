@@ -48,26 +48,17 @@ export default function AdminInquiries() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-600">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow-sm">
+    <div className="min-h-screen">
+      <div className="bg-white shadow-sm mb-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">爱</span>
-              </div>
-              <span className="font-bold text-xl text-gray-900">爱康医旅</span>
-            </Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-600">Admin</span>
-          </div>
+          <span className="text-gray-600">Customer Inquiries</span>
           <button
             onClick={handleLogout}
             className="text-gray-600 hover:text-gray-900 text-sm font-medium"
@@ -75,7 +66,7 @@ export default function AdminInquiries() {
             Logout
           </button>
         </div>
-      </header>
+      </div>
 
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-8">Customer Inquiries</h1>
