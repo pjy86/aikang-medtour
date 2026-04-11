@@ -1,4 +1,4 @@
-import {getTranslations} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import Link from 'next/link';
 import {
   MessageCircle,
@@ -16,9 +16,8 @@ import {
   Phone,
 } from 'lucide-react';
 
-export const dynamic = 'force-dynamic';
-
 export default async function HomePage({params}: {params: {locale: string}}) {
+  setRequestLocale(params.locale);
   const t = await getTranslations('hero');
   const tWhy = await getTranslations('whyChoose');
   const tServices = await getTranslations('services');
