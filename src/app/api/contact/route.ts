@@ -2,9 +2,12 @@ import {NextResponse} from 'next/server';
 import {neon} from '@neondatabase/serverless';
 
 function getSql() {
-  const connectionString = process.env.POSTGRES_URL;
+  const connectionString = 
+    process.env.DATABASE_URL_UNPOOLED || 
+    process.env.DATABASE_URL || 
+    process.env.POSTGRES_URL;
   if (!connectionString) {
-    throw new Error('POSTGRES_URL environment variable is not set');
+    throw new Error('No database environment variable is set');
   }
   return neon(connectionString);
 }
