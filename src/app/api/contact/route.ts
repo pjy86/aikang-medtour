@@ -1,5 +1,7 @@
 import {NextResponse} from 'next/server';
-import {sql} from '@vercel/postgres';
+import {neon} from '@neondatabase/serverless';
+
+const sql = neon(process.env.POSTGRES_URL!);
 
 export async function POST(request: Request) {
   try {
@@ -25,7 +27,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error processing contact form:', error);
     return NextResponse.json(
-      {error: 'Internal server error'},
+      {error: 'Internal server error', details: String(error)},
       {status: 500}
     );
   }
@@ -33,14 +35,14 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const {rows} = await sql`
+    const rows = await sql`
       SELECT * FROM inquiries ORDER BY created_at DESC
     `;
     return NextResponse.json(rows, {status: 200});
   } catch (error) {
     console.error('Error fetching inquiries:', error);
     return NextResponse.json(
-      {error: 'Internal server error'},
+      {error: 'Internal server error', details: String(error)},
       {status: 500}
     );
   }
