@@ -33,8 +33,9 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error('Error processing contact form:', error);
+    const err = error as Error;
     return NextResponse.json(
-      {error: 'Internal server error', details: String(error), name: error?.name, message: error?.message},
+      {error: 'Internal server error', details: String(error), name: err?.name, message: err?.message},
       {status: 500}
     );
   }
@@ -49,8 +50,9 @@ export async function GET() {
     return NextResponse.json(rows, {status: 200});
   } catch (error) {
     console.error('Error fetching inquiries:', error);
+    const err = error as Error;
     return NextResponse.json(
-      {error: 'Internal server error', details: String(error), name: error?.name, message: error?.message},
+      {error: 'Internal server error', details: String(error), name: err?.name, message: err?.message},
       {status: 500}
     );
   }
