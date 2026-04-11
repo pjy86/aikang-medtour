@@ -37,14 +37,14 @@
 
 ### 5. 多语言支持
 - [x] next-intl 配置
-- [ ] 翻译文件（zh/en/id）
-- [ ] 页面国际化改造
+- [x] 翻译文件（zh/en/id）
+- [x] 页面国际化改造
 
 ### 6. 数据存储与管理员
-- [x] Vercel Postgres 数据库
-- [ ] API 路由（联系表单写入数据库）
-- [ ] 管理员登录页面
-- [ ] 客户数据查看页面
+- [x] Vercel Postgres 数据库配置
+- [x] API 路由（联系表单写入数据库）
+- [x] 管理员登录页面
+- [x] 客户数据查看页面
 
 ## 待开发功能
 - [ ] 医院合作伙伴展示
@@ -79,7 +79,40 @@
 | 日期 | 变更内容 | 确认状态 |
 |------|----------|----------|
 | 2026-04-11 | 初始官网需求 | 已完成部署 |
-| 2026-04-11 | 增加多语言支持（中/英/印尼语） | 开发中 |
-| 2026-04-11 | 增加 Vercel Postgres 数据库存储表单数据 | 开发中 |
-| 2026-04-11 | 增加管理员后台查看客户数据 | 开发中 |
+| 2026-04-11 | 增加多语言支持（中/英/印尼语） | 已完成 |
+| 2026-04-11 | 增加 Vercel Postgres 数据库存储表单数据 | 已完成 |
+| 2026-04-11 | 增加管理员后台查看客户数据 | 已完成 |
 | 2026-04-11 | 增加 Discord 联系方式 | 已添加 |
+
+## Vercel Postgres 数据库配置
+
+### 步骤 1：创建数据库
+1. 登录 Vercel → 项目 → **Storage** → **Create Database**
+2. 选择 **Postgres** → 创建
+3. 复制 **Connection URL**（格式：`postgres://...`）
+
+### 步骤 2：创建数据表
+在 Vercel Storage 数据库的 **Query** 面板中执行以下 SQL：
+
+```sql
+CREATE TABLE IF NOT EXISTS inquiries (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(100),
+  country VARCHAR(100),
+  service VARCHAR(255),
+  message TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+或使用 `scripts/create-table.sql` 文件。
+
+### 步骤 3：连接数据库
+Vercel 会自动设置 `POSTGRES_URL` 环境变量，代码无需修改。
+
+### 管理员后台
+- 登录页面: `/admin/login`
+- 数据查看: `/admin/inquiries`
+- 默认账号: `admin@aikangmedtour.com` / `admin123`

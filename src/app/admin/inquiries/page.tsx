@@ -18,6 +18,7 @@ interface Inquiry {
 export default function AdminInquiries() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -27,31 +28,17 @@ export default function AdminInquiries() {
       return;
     }
 
-    const sampleData: Inquiry[] = [
-      {
-        id: 1,
-        name: 'Michael Thompson',
-        email: 'michael.thompson@email.com',
-        phone: '+1 555-123-4567',
-        country: 'United States',
-        service: 'Cardiac Surgery',
-        message: 'I am interested in heart bypass surgery. Can you provide more details about the procedure and recovery time?',
-        created_at: '2026-04-10T10:30:00Z',
-      },
-      {
-        id: 2,
-        name: 'Sarah Wijaya',
-        email: 'sarah.wijaya@email.com',
-        phone: '+62 812-3456-7890',
-        country: 'Indonesia',
-        service: 'Orthopedics',
-        message: 'Looking for information about knee replacement surgery. What is the typical hospital stay?',
-        created_at: '2026-04-11T14:22:00Z',
-      },
-    ];
-
-    setInquiries(sampleData);
-    setLoading(false);
+    fetch('/api/contact')
+      .then(res => res.json())
+      .then(data => {
+        setInquiries(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching inquiries:', err);
+        setError('Failed to load inquiries');
+        setLoading(false);
+      });
   }, [router]);
 
   const handleLogout = () => {
@@ -93,6 +80,12 @@ export default function AdminInquiries() {
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-8">Customer Inquiries</h1>
 
+        {error && (
+          <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl mb-6">
+            {error}
+          </div>
+        )}
+
         {inquiries.length === 0 ? (
           <div className="bg-white rounded-2xl p-12 text-center">
             <p className="text-gray-500">No inquiries yet</p>
@@ -118,9 +111,9 @@ export default function AdminInquiries() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{inquiry.id}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{inquiry.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.phone}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.country}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.service}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.phone || '-'}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.country || '-'}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{inquiry.service || '-'}</td>
                     <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">{inquiry.message}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                       {new Date(inquiry.created_at).toLocaleDateString()}
