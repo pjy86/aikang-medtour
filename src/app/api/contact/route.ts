@@ -1,20 +1,13 @@
 import {NextResponse} from 'next/server';
-import {neon} from '@neondatabase/serverless';
+import postgres from 'postgres';
 
-function getSql() {
-  const connectionString = 
-    process.env.DATABASE_URL_UNPOOLED || 
-    process.env.DATABASE_URL || 
-    process.env.POSTGRES_URL;
-  if (!connectionString) {
-    throw new Error('No database environment variable is set');
-  }
-  return neon(connectionString);
-}
+const sql = postgres(process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '', {
+  ssl: 'require',
+  connect_timeout: 10,
+});
 
 export async function POST(request: Request) {
   try {
-    const sql = getSql();
     const body = await request.json();
     const {name, email, phone, country, service, message} = body;
 
@@ -46,7 +39,6 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const sql = getSql();
     const rows = await sql`
       SELECT * FROM inquiries ORDER BY created_at DESC
     `;
