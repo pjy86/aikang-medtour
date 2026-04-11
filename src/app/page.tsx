@@ -13,7 +13,8 @@ import {
   Users,
   Award,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Phone
 } from 'lucide-react'
 
 export default function Home() {
