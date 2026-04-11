@@ -1,0 +1,299 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Trusted by 5000+ International Patients",
+    "title": "Your Gateway to",
+    "titleHighlight": "Premium Healthcare",
+    "titleSuffix": "in China",
+    "description": "We provide comprehensive medical tourism services for patients from the US and Indonesia. Experience world-class treatment with zero waiting time and significant cost savings.",
+    "freeConsultation": "Free Consultation",
+    "exploreServices": "Explore Services"
+  },
+  "whyChoose": {
+    "title": "Why Patients Choose",
+    "titleHighlight": "AiKang",
+    "subtitle": "We handle everything so you can focus on your health",
+    "worldClass": {
+      "title": "World-Class Hospitals",
+      "description": "Partnered with JCI-accredited top hospitals in China featuring cutting-edge medical technology and internationally trained specialists."
+    },
+    "zeroWaiting": {
+      "title": "Zero Waiting Time",
+      "description": "Surgery appointment within 7 days. No long queues or waiting lists that are common in other countries."
+    },
+    "savings": {
+      "title": "Significant Savings",
+      "description": "Save 70-80% on medical procedures while receiving equal or better quality care compared to the US."
+    },
+    "personalCare": {
+      "title": "Personal Care Coordinator",
+      "description": "Dedicated bilingual coordinator accompanies you throughout your entire medical journey from consultation to recovery."
+    },
+    "travelSupport": {
+      "title": "Complete Travel Support",
+      "description": "Visa assistance, airport pickup, accommodation arrangement, and interpretation services all included."
+    },
+    "aftercare": {
+      "title": "Post-Treatment Follow-up",
+      "description": "Continuously monitor your recovery after returning home with regular check-ins and telemedicine support."
+    }
+  },
+  "services": {
+    "title": "Our Medical Services",
+    "subtitle": "Comprehensive healthcare solutions tailored to your needs",
+    "viewAll": "View All Services",
+    "getQuote": "Get Free Quote",
+    "typicalCost": "Typical Cost Range",
+    "vsUS": "vs US",
+    "save": "Save 70-80% vs US",
+    "cardiac": {
+      "title": "Cardiac Surgery",
+      "description": "World-class heart care including bypass surgery, valve replacement, and minimally invasive procedures.",
+      "features": ["Coronary artery bypass grafting (CABG)", "Heart valve repair/replacement", "Minimally invasive cardiac surgery", "Arrhythmia treatment"]
+    },
+    "oncology": {
+      "title": "Oncology",
+      "description": "Comprehensive cancer care from diagnosis to treatment and rehabilitation with cutting-edge technology.",
+      "features": ["Cancer screening & diagnosis", "Surgical oncology", "Chemotherapy & immunotherapy", "Precision medicine"]
+    },
+    "orthopedics": {
+      "title": "Orthopedics",
+      "description": "Advanced orthopedic treatments including joint replacement, spine surgery, and sports medicine.",
+      "features": ["Hip & knee replacement", "Spine surgery", "Sports medicine", "Arthroscopic procedures"]
+    },
+    "neurology": {
+      "title": "Neurology",
+      "description": "Expert neurological care for conditions affecting the brain, spine, and nervous system.",
+      "features": ["Brain tumor treatment", "Spine surgery", "Stroke rehabilitation", "Deep brain stimulation"]
+    },
+    "ophthalmology": {
+      "title": "Ophthalmology",
+      "description": "State-of-the-art eye treatments including cataract surgery, LASIK, and retinal procedures.",
+      "features": ["Cataract surgery", "LASIK & refractive surgery", "Retinal treatment", "Cornea transplant"]
+    },
+    "fertility": {
+      "title": "Fertility Treatment",
+      "description": "Advanced reproductive medicine with high success rates at world-class fertility centers.",
+      "features": ["IVF & ICSI", "Egg & sperm donation", "Surrogacy services", "Preimplantation genetic testing"]
+    },
+    "general": {
+      "title": "General Surgery",
+      "description": "Comprehensive general surgical procedures performed by experienced surgeons.",
+      "features": ["Gastric surgery", "Thyroid surgery", "Hernia repair", "Gallbladder removal"]
+    },
+    "preventive": {
+      "title": "Preventive Health",
+      "description": "Comprehensive health checkups and wellness programs for early detection and prevention.",
+      "features": ["Executive health screening", "Cancer screening", "Cardiac assessment", "Genetic testing"]
+    }
+  },
+  "process": {
+    "title": "Our Service Process",
+    "subtitle": "From initial consultation to recovery, we handle every detail",
+    "step1": {
+      "title": "Free Consultation",
+      "description": "Submit your medical reports and receive opinions from top Chinese specialists within 24 hours."
+    },
+    "step2": {
+      "title": "Treatment Plan",
+      "description": "Receive a detailed treatment plan including hospital selection, doctor profiles, and cost estimates."
+    },
+    "step3": {
+      "title": "Travel Arrangements",
+      "description": "We handle visa assistance, flight bookings, airport pickup, and accommodation arrangements."
+    },
+    "step4": {
+      "title": "Treatment & Recovery",
+      "description": "Receive treatment at world-class facilities with your personal care coordinator by your side."
+    }
+  },
+  "testimonials": {
+    "title": "What Our Patients Say",
+    "subtitle": "Real experiences from international patients"
+  },
+  "cta": {
+    "title": "Start Your Medical Journey Today",
+    "description": "Get a free consultation and personalized treatment plan. Our team is available 24/7 on WhatsApp to answer your questions.",
+    "freeOpinion": "Free medical opinion within 24 hours",
+    "costEstimate": "Detailed cost estimates from top hospitals",
+    "travelAssistance": "Assistance with travel arrangements and visa",
+    "chatWhatsApp": "Chat on WhatsApp",
+    "call": "+86 15711112233"
+  },
+  "footer": {
+    "tagline": "Your trusted partner for premium healthcare services in China.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "connect": "Connect With Us",
+    "whatsappNote": "Available on WhatsApp for instant consultation",
+    "copyright": "AiKang Medical Tour. All rights reserved."
+  },
+  "about": {
+    "whoWeAre": {
+      "title": "Who We Are",
+      "p1": "AiKang Medical Tour (爱康医旅) was founded with a mission to make premium healthcare accessible to international patients. We specialize in providing comprehensive medical tourism services for patients from the United States and Indonesia, offering a seamless journey from initial consultation to complete recovery.",
+      "p2": "While we don't own hospitals ourselves, we've built strong partnerships with China's top JCI-accredited medical institutions, giving our patients access to cutting-end technology and internationally trained specialists."
+    },
+    "stats": {
+      "patients": "5000+",
+      "patientsLabel": "Patients Served",
+      "success": "95%+",
+      "successLabel": "Success Rate"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide international patients with access to China's world-class healthcare through a seamless, transparent, and personalized service experience."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the most trusted name in China medical tourism, setting new standards for patient care and international healthcare accessibility."
+    },
+    "values": {
+      "title": "Our Values",
+      "description": "Compassion, integrity, transparency, and excellence in everything we do. Your health and well-being are our top priorities."
+    },
+    "whyChoose": {
+      "title": "Why Choose AiKang?",
+      "subtitle": "What sets us apart from other medical tourism providers",
+      "verified": {
+        "title": "Verified Partner Hospitals",
+        "description": "We only work with JCI-accredited hospitals that meet international standards for quality and safety."
+      },
+      "personal": {
+        "title": "Personal Care Coordinators",
+        "description": "Each patient receives a dedicated bilingual coordinator available 24/7 throughout their medical journey."
+      },
+      "transparent": {
+        "title": "Transparent Pricing",
+        "description": "No hidden fees or surprises. We provide detailed cost estimates upfront before you travel."
+      },
+      "aftercare": {
+        "title": "Comprehensive Aftercare",
+        "description": "Our support continues after you return home with telemedicine follow-ups and rehabilitation guidance."
+      },
+      "fastTrack": {
+        "title": "Zero Waiting Time",
+        "description": "Fast-track appointments with top specialists. Surgery scheduling within 7 days of arrival."
+      },
+      "logistics": {
+        "title": "Complete Travel Support",
+        "description": "From visa assistance to accommodation and local transportation, we handle all logistics."
+      }
+    },
+    "promise": {
+      "title": "Our Promise to You",
+      "items": [
+        "Free initial medical consultation and second opinion",
+        "Personalized treatment plans tailored to your needs",
+        "Transparent pricing with no hidden costs",
+        "24/7 support via WhatsApp and phone",
+        "Airport pickup and local transportation assistance",
+        "Accommodation recommendations near hospitals",
+        "Interpretation services during medical appointments",
+        "Post-treatment follow-up and telemedicine support",
+        "Assistance with medical reports and documentation",
+        "Recovery support and rehabilitation coordination"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch for a free medical consultation. We're here to help 24/7.",
+    "getInTouch": "Get in Touch",
+    "getInTouchDesc": "Whether you have questions about our services, need help planning your medical trip, or want a second opinion, our team is ready to assist you.",
+    "whatsapp": {
+      "label": "WhatsApp (Preferred)",
+      "value": "+86 15711112233"
+    },
+    "phone": {
+      "label": "Phone",
+      "value1": "+86 15711112233",
+      "value2": "+86 15855159472"
+    },
+    "email": {
+      "label": "Email",
+      "value": "info@aikangmedtour.com"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "value": "24/7 Support Available"
+    },
+    "quickResponse": {
+      "title": "Quick Response Guarantee",
+      "description": "For WhatsApp inquiries, we typically respond within 1 hour. Email inquiries are answered within 24 hours."
+    },
+    "form": {
+      "title": "Send Us an Inquiry",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone/WhatsApp",
+      "phonePlaceholder": "+1 234 567 8900",
+      "country": "Country",
+      "countrySelect": "Select country",
+      "usa": "United States",
+      "indonesia": "Indonesia",
+      "other": "Other",
+      "service": "Service Interest",
+      "serviceSelect": "Select service",
+      "message": "Your Message",
+      "messagePlaceholder": "Please describe your medical condition and what you're looking for...",
+      "submit": "Submit Inquiry",
+      "successTitle": "Thank You!",
+      "successMessage": "Your inquiry has been submitted successfully. Our medical team will review your case and contact you within 24 hours."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "q": "How do I get started with my medical trip to China?",
+        "a": "Simply contact us via WhatsApp or email with your medical reports. Our team will arrange consultations with top Chinese specialists and provide you with treatment options and cost estimates within 24 hours."
+      },
+      "q2": {
+        "q": "What is the typical cost savings compared to treatment in the US?",
+        "a": "Most medical procedures in China cost 60-80% less than in the United States, while maintaining equal or better quality of care. For example, heart bypass surgery costs $12,000-25,000 in China vs $100,000-150,000 in the US."
+      },
+      "q3": {
+        "q": "How quickly can I schedule surgery after contacting you?",
+        "a": "We can typically arrange surgery appointments within 7 days of your arrival in China. Our zero waiting time policy is one of the key advantages of choosing medical treatment in China."
+      },
+      "q4": {
+        "q": "Do you assist with visa and travel arrangements?",
+        "a": "Yes, we provide comprehensive assistance including medical visa invitation letters, flight bookings, airport pickup, and accommodation arrangements near our partner hospitals."
+      },
+      "q5": {
+        "q": "What language support do you provide?",
+        "a": "All our care coordinators are bilingual. We also provide professional medical interpretation services during all hospital visits and consultations to ensure clear communication with your medical team."
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "email": "Email Address",
+      "password": "Password",
+      "submit": "Sign In",
+      "error": "Invalid email or password"
+    },
+    "inquiries": {
+      "title": "Customer Inquiries",
+      "logout": "Logout",
+      "noData": "No inquiries yet",
+      "columns": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "country": "Country",
+        "service": "Service",
+        "message": "Message",
+        "date": "Date"
+      }
+    }
+  }
+}

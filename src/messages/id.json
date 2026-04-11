@@ -1,0 +1,299 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "services": "Layanan",
+    "about": "Tentang Kami",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "badge": "Dipercaya oleh 5000+ Pasien Internasional",
+    "title": "Pintu Gerbang Anda ke",
+    "titleHighlight": "Healthcare Premium",
+    "titleSuffix": "di China",
+    "description": "Kami menyediakan layanan pariwisata medis komprehensif untuk pasien dari AS dan Indonesia. Rasakan perawatan kelas dunia dengan waktu tunggu nol dan penghematan biaya yang signifikan.",
+    "freeConsultation": "Konsultasi Gratis",
+    "exploreServices": "Jelajahi Layanan"
+  },
+  "whyChoose": {
+    "title": "Mengapa Pasien Memilih",
+    "titleHighlight": "AiKang",
+    "subtitle": "Kami menangani segalanya agar Anda dapat fokus pada kesehatan Anda",
+    "worldClass": {
+      "title": "Rumah Sakit Kelas Dunia",
+      "description": "Bermitra dengan rumah sakit top terakreditasi JCI di China yang menampilkan teknologi medis mutakhir dan spesialis yang dilatih secara internasional."
+    },
+    "zeroWaiting": {
+      "title": "Tanpa Waktu Tunggu",
+      "description": "Jadwal operasi dalam 7 hari. Tidak ada antrian panjang seperti di negara lain."
+    },
+    "savings": {
+      "title": "Penghematan Signifikan",
+      "description": "Hemat 70-80% untuk prosedur medis sambil menerima perawatan berkualitas setara atau lebih baik dibandingkan AS."
+    },
+    "personalCare": {
+      "title": "Koordinator Perawatan Pribadi",
+      "description": "Koordinator dwibahasa yang berdedikasi menemani Anda sepanjang perjalanan medis dari konsultasi hingga pemulihan."
+    },
+    "travelSupport": {
+      "title": "Dukungan Perjalanan Lengkap",
+      "description": "Bantuan visa, penjemputan bandara, pengaturan akomodasi, dan layanan interpretasi semua termasuk."
+    },
+    "aftercare": {
+      "title": "Tindak Lanjut Pasca Perawatan",
+      "description": "Pantau pemulihan Anda setelah pulang dengan pemeriksaan rutin dan dukungan telemedicine."
+    }
+  },
+  "services": {
+    "title": "Layanan Medis Kami",
+    "subtitle": "Solusi healthcare komprehensif yang disesuaikan dengan kebutuhan Anda",
+    "viewAll": "Lihat Semua Layanan",
+    "getQuote": "Dapatkan Penawaran Gratis",
+    "typicalCost": "Kisaran Biaya",
+    "vsUS": "vs AS",
+    "save": "Hemat 70-80% vs AS",
+    "cardiac": {
+      "title": "Bedah Jantung",
+      "description": "Perawatan jantung kelas dunia termasuk operasi bypass, penggantian katup, dan prosedur invasif minimal.",
+      "features": ["Cangkok bypass arteri koroner (CABG)", "Perbaikan/penggantian katup jantung", "Bedah jantung invasif minimal", "Pengobatan aritmia"]
+    },
+    "oncology": {
+      "title": "Onkologi",
+      "description": "Perawatan kanker komprehensif dari diagnosis hingga pengobatan dan rehabilitasi dengan teknologi mutakhir.",
+      "features": ["Skrining & diagnosis kanker", "Onkologi bedah", "Kemoterapi & imunoterapi", "Kedokteran presisi"]
+    },
+    "orthopedics": {
+      "title": "Ortopedi",
+      "description": "Perawatan ortopedi canggih termasuk penggantian sendi, bedah tulang belakang, dan kedokteran olahraga.",
+      "features": ["Penggantian pinggul & lutut", "Bedah tulang belakang", "Kedokteran olahraga", "Prosedur artroskopi"]
+    },
+    "neurology": {
+      "title": "Neurologi",
+      "description": "Perawatan neurologi ahli untuk kondisi yang mempengaruhi otak, tulang belakang, dan sistem saraf.",
+      "features": ["Pengobatan tumor otak", "Bedah tulang belakang", "Rehabilitasi stroke", "Stimulasi otak dalam"]
+    },
+    "ophthalmology": {
+      "title": "Oftalmologi",
+      "description": "Perawatan mata mutakhir termasuk operasi katarak, LASIK, dan prosedur retina.",
+      "features": ["Operasi katarak", "LASIK & bedah refraktif", "Pengobatan retina", "Transplantasi kornea"]
+    },
+    "fertility": {
+      "title": "Perawatan Fertilitas",
+      "description": "Kedokteran reproduksi canggih dengan tingkat keberhasilan tinggi di pusat kesuburan kelas dunia.",
+      "features": ["IVF & ICSI", "Donasi telur & sperma", "Layanan surrogasi", "Pengujian genetik praimplantasi"]
+    },
+    "general": {
+      "title": "Bedah Umum",
+      "description": "Prosedur bedah umum komprehensif yang dilakukan oleh ahli bedah berpengalaman.",
+      "features": ["Bedah lambung", "Bedah tiroid", "Perbaikan hernia", "Pengangkatan kandung empedu"]
+    },
+    "preventive": {
+      "title": "Kesehatan Preventif",
+      "description": "Pemeriksaan kesehatan dan program wellness komprehensif untuk deteksi dan pencegahan dini.",
+      "features": ["Skrining kesehatan eksekutif", "Skrining kanker", "Penilaian kardiovaskular", "Pengujian genetik"]
+    }
+  },
+  "process": {
+    "title": "Proses Layanan Kami",
+    "subtitle": "Dari konsultasi awal hingga pemulihan, kami menangani setiap detail",
+    "step1": {
+      "title": "Konsultasi Gratis",
+      "description": "Kirimkan laporan medis Anda dan dapatkan pendapat dari spesialis top China dalam 24 jam."
+    },
+    "step2": {
+      "title": "Rencana Perawatan",
+      "description": "Terima rencana perawatan detail termasuk pemilihan rumah sakit, profil dokter, dan perkiraan biaya."
+    },
+    "step3": {
+      "title": "Pengaturan Perjalanan",
+      "description": "Kami menangani bantuan visa, pemesanan penerbangan, penjemputan bandara, dan pengaturan akomodasi."
+    },
+    "step4": {
+      "title": "Perawatan & Pemulihan",
+      "description": "Terima perawatan di fasilitas kelas dunia dengan coordinator perawatan pribadi Anda di sisi Anda."
+    }
+  },
+  "testimonials": {
+    "title": "Apa Kata Pasien Kami",
+    "subtitle": "Pengalaman nyata dari pasien internasional"
+  },
+  "cta": {
+    "title": "Mulai Perjalanan Medis Anda Hari Ini",
+    "description": "Dapatkan konsultasi gratis dan rencana perawatan yang dipersonalisasi. Tim kami tersedia 24/7 di WhatsApp untuk menjawab pertanyaan Anda.",
+    "freeOpinion": "Opini medis gratis dalam 24 jam",
+    "costEstimate": "Perkiraan biaya detail dari rumah sakit top",
+    "travelAssistance": "Bantuan pengaturan perjalanan dan visa",
+    "chatWhatsApp": "Chat di WhatsApp",
+    "call": "+86 15711112233"
+  },
+  "footer": {
+    "tagline": "Mitra terpercaya Anda untuk layanan healthcare premium di China.",
+    "quickLinks": "Tautan Cepat",
+    "contactUs": "Hubungi Kami",
+    "connect": "Hubungi Kami",
+    "whatsappNote": "Tersedia di WhatsApp untuk konsultasi instan",
+    "copyright": "AiKang Medical Tour. Hak cipta dilindungi."
+  },
+  "about": {
+    "whoWeAre": {
+      "title": "Siapa Kami",
+      "p1": "AiKang Medical Tour didirikan dengan misi untuk membuat healthcare premium dapat diakses oleh pasien internasional. Kami mengkhususkan diri dalam menyediakan layanan pariwisata medis komprehensif untuk pasien dari Amerika Serikat dan Indonesia, menawarkan perjalanan tanpa batas dari konsultasi awal hingga pemulihan lengkap.",
+      "p2": "Meskipun kami tidak memiliki rumah sakit sendiri, kami telah membangun kemitraan kuat dengan institusi medis top terakreditasi JCI di China, memberikan akses pasien kami ke teknologi canggih dan spesialis yang dilatih secara internasional."
+    },
+    "stats": {
+      "patients": "5000+",
+      "patientsLabel": "Pasien Dilayani",
+      "success": "95%+",
+      "successLabel": "Tingkat Keberhasilan"
+    },
+    "mission": {
+      "title": "Misi Kami",
+      "description": "Menyediakan akses pasien internasional ke healthcare kelas dunia China melalui pengalaman layanan yang mulus, transparan, dan personal."
+    },
+    "vision": {
+      "title": "Visi Kami",
+      "description": "Menjadi nama paling terpercaya dalam pariwisata medis China, menetapkan standar baru untuk perawatan pasien dan aksesibilitas healthcare internasional."
+    },
+    "values": {
+      "title": "Nilai-Nilai Kami",
+      "description": "Belas kasih, integritas, transparansi, dan keunggulan dalam segala yang kami lakukan. Kesehatan dan kesejahteraan Anda adalah prioritas utama kami."
+    },
+    "whyChoose": {
+      "title": "Mengapa Memilih AiKang?",
+      "subtitle": "Apa yang membedakan kami dari penyedia pariwisata medis lainnya",
+      "verified": {
+        "title": "Rumah Sakit Mitra Terverifikasi",
+        "description": "Kami hanya bekerja sama dengan rumah sakit terakreditasi JCI yang memenuhi standar internasional untuk kualitas dan keamanan."
+      },
+      "personal": {
+        "title": "Koordinator Perawatan Pribadi",
+        "description": "Setiap pasien menerima koordinator dwibahasa yang tersedia 24/7 sepanjang perjalanan medis mereka."
+      },
+      "transparent": {
+        "title": "Harga Transparan",
+        "description": "Tanpa biaya tersembunyi atau kejutan. Kami memberikan perkiraan biaya detail di awal sebelum Anda bepergian."
+      },
+      "aftercare": {
+        "title": "Perawatan Lanjutan Komprehensif",
+        "description": "Dukungan kami berlanjut setelah Anda pulang dengan tindak lanjut telemedicine dan panduan rehabilitasi."
+      },
+      "fastTrack": {
+        "title": "Tanpa Waktu Tunggu",
+        "description": "Jadwal cepat dengan spesialis top. Penjadwalan operasi dalam 7 hari setelah kedatangan."
+      },
+      "logistics": {
+        "title": "Dukungan Perjalanan Lengkap",
+        "description": "Dari bantuan visa hingga akomodasi dan transportasi lokal, kami menangani semua logistik."
+      }
+    },
+    "promise": {
+      "title": "Janji Kami kepada Anda",
+      "items": [
+        "Konsultasi medis awal dan opini kedua gratis",
+        "Rencana perawatan yang dipersonalisasi sesuai kebutuhan Anda",
+        "Harga transparan tanpa biaya tersembunyi",
+        "Dukungan 24/7 melalui WhatsApp dan telepon",
+        "Penjemputan bandara dan bantuan transportasi lokal",
+        "Rekomendasi akomodasi dekat rumah sakit",
+        "Layanan interpretasi selama janji medis",
+        "Tindak lanjut pasca-perawatan dan dukungan telemedicine",
+        "Bantuan dengan laporan dan dokumentasi medis",
+        "Dukungan pemulihan dan koordinasi rehabilitasi"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Hubungi kami untuk konsultasi medis gratis. Kami di sini untuk membantu 24/7.",
+    "getInTouch": "Hubungi Kami",
+    "getInTouchDesc": "Baik Anda memiliki pertanyaan tentang layanan kami, memerlukan bantuan merencanakan perjalanan medis, atau ingin pendapat kedua, tim kami siap membantu Anda.",
+    "whatsapp": {
+      "label": "WhatsApp (Disukai)",
+      "value": "+86 15711112233"
+    },
+    "phone": {
+      "label": "Telepon",
+      "value1": "+86 15711112233",
+      "value2": "+86 15855159472"
+    },
+    "email": {
+      "label": "Email",
+      "value": "info@aikangmedtour.com"
+    },
+    "hours": {
+      "label": "Jam Kerja",
+      "value": "Dukungan 24/7"
+    },
+    "quickResponse": {
+      "title": "Jaminan Respons Cepat",
+      "description": "Untuk inquiry WhatsApp, kami biasanya merespons dalam 1 jam. Inquiry email dijawab dalam 24 jam."
+    },
+    "form": {
+      "title": "Kirimkan Inquiry kepada Kami",
+      "name": "Nama Lengkap",
+      "namePlaceholder": "Masukkan nama lengkap Anda",
+      "email": "Alamat Email",
+      "emailPlaceholder": "anda@email.com",
+      "phone": "Telepon/WhatsApp",
+      "phonePlaceholder": "+62 812 3456 7890",
+      "country": "Negara",
+      "countrySelect": "Pilih negara",
+      "usa": "Amerika Serikat",
+      "indonesia": "Indonesia",
+      "other": "Lainnya",
+      "service": "Layanan yang Diminati",
+      "serviceSelect": "Pilih layanan",
+      "message": "Pesan Anda",
+      "messagePlaceholder": "Silakan jelaskan kondisi medis dan apa yang Anda cari...",
+      "submit": "Kirim Inquiry",
+      "successTitle": "Terima Kasih!",
+      "successMessage": "Inquiry Anda telah berhasil dikirim. Tim medis kami akan meninjau kasus Anda dan menghubungi Anda dalam 24 jam."
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "q1": {
+        "q": "Bagaimana cara memulai perjalanan medis saya ke China?",
+        "a": "Cukup hubungi kami melalui WhatsApp atau email dengan laporan medis Anda. Tim kami akan mengatur konsultasi dengan spesialis China top dan memberikan opsi pengobatan serta perkiraan biaya dalam 24 jam."
+      },
+      "q2": {
+        "q": "Berapa penghematan biaya khas dibandingkan perawatan di AS?",
+        "a": "Sebagian besar prosedur medis di China biaya 60-80% lebih rendah dari Amerika Serikat, dengan mempertahankan kualitas perawatan yang setara atau lebih baik. Misalnya, operasi bypass jantung biaya $12.000-25.000 di China vs $100.000-150.000 di AS."
+      },
+      "q3": {
+        "q": "Seberapa cepat saya dapat menjadwalkan operasi setelah menghubungi Anda?",
+        "a": "Kami biasanya dapat mengatur jadwal operasi dalam 7 hari setelah kedatangan Anda di China. Kebijakan tanpa waktu tunggu adalah salah satu keunggulan utama pengobatan di China."
+      },
+      "q4": {
+        "q": "Apakah Anda membantu dengan visa dan pengaturan perjalanan?",
+        "a": "Ya, kami menyediakan bantuan komprehensif termasuk surat undangan visa medis, pemesanan penerbangan, penjemputan bandara, dan pengaturan akomodasi di dekat rumah sakit mitra kami."
+      },
+      "q5": {
+        "q": "Dukungan bahasa apa yang Anda sediakan?",
+        "a": "Semua koordinator perawatan kami dwibahasa. Kami juga menyediakan layanan interpretasi medis profesional selama semua kunjungan dan konsultasi rumah sakit untuk memastikan komunikasi jelas dengan tim medis Anda."
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Login Admin",
+      "email": "Alamat Email",
+      "password": "Kata Sandi",
+      "submit": "Masuk",
+      "error": "Email atau kata sandi tidak valid"
+    },
+    "inquiries": {
+      "title": "Inquiry Pelanggan",
+      "logout": "Keluar",
+      "noData": "Belum ada inquiry",
+      "columns": {
+        "id": "ID",
+        "name": "Nama",
+        "email": "Email",
+        "phone": "Telepon",
+        "country": "Negara",
+        "service": "Layanan",
+        "message": "Pesan",
+        "date": "Tanggal"
+      }
+    }
+  }
+}

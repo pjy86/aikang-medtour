@@ -1,0 +1,299 @@
+{
+  "nav": {
+    "home": "首页",
+    "services": "服务",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "badge": "5000+ 国际患者信赖之选",
+    "title": "您的专属",
+    "titleHighlight": "高端医疗服务",
+    "titleSuffix": "直通中国",
+    "description": "我们为来自美国和印度尼西亚的患者提供全面的医疗旅游服务。零等待时间，显著费用节省，享受世界级治疗。",
+    "freeConsultation": "免费咨询",
+    "exploreServices": "探索服务"
+  },
+  "whyChoose": {
+    "title": "为什么选择",
+    "titleHighlight": "爱康",
+    "subtitle": "我们处理一切，您只需专注于健康",
+    "worldClass": {
+      "title": "世界级医院",
+      "description": "与中国JCI认证顶级医院合作，拥有尖端医疗技术和国际培训专家。"
+    },
+    "zeroWaiting": {
+      "title": "零等待时间",
+      "description": "7天内安排手术。无需像其他国家那样长时间排队等候。"
+    },
+    "savings": {
+      "title": "显著节省",
+      "description": "在获得同等或更好医疗质量的同时，节省60-80%的费用。"
+    },
+    "personalCare": {
+      "title": "专属医疗协调员",
+      "description": "从咨询到康复，全程配备双语协调员陪同。"
+    },
+    "travelSupport": {
+      "title": "全程旅行支持",
+      "description": "包含签证协助、机场接送、住宿安排和翻译服务。"
+    },
+    "aftercare": {
+      "title": "术后随访",
+      "description": "回国后持续跟踪您的康复情况，提供定期检查和远程医疗服务。"
+    }
+  },
+  "services": {
+    "title": "我们的医疗服务",
+    "subtitle": "量身定制的综合医疗解决方案",
+    "viewAll": "查看全部服务",
+    "getQuote": "获取免费报价",
+    "typicalCost": "费用范围",
+    "vsUS": "对比美国",
+    "save": "节省70-80%",
+    "cardiac": {
+      "title": "心脏外科",
+      "description": "世界级心脏护理，包括搭桥手术、瓣膜置换和微创手术。",
+      "features": ["冠状动脉搭桥术(CABG)", "心脏瓣膜修复/置换", "微创心脏手术", "心律失常治疗"]
+    },
+    "oncology": {
+      "title": "肿瘤科",
+      "description": "从诊断到治疗和康复的全面癌症护理，采用尖端技术。",
+      "features": ["癌症筛查与诊断", "肿瘤外科", "化疗与免疫治疗", "精准医学"]
+    },
+    "orthopedics": {
+      "title": "骨科",
+      "description": "先进的骨科治疗，包括关节置换、脊柱手术和运动医学。",
+      "features": ["髋关节和膝关节置换", "脊柱手术", "运动医学", "关节镜手术"]
+    },
+    "neurology": {
+      "title": "神经科",
+      "description": "针对大脑、脊柱和神经系统疾病的专家级神经护理。",
+      "features": ["脑肿瘤治疗", "脊柱手术", "中风康复", "脑深部刺激"]
+    },
+    "ophthalmology": {
+      "title": "眼科",
+      "description": "包括白内障手术、LASIK和视网膜手术的先进眼科治疗。",
+      "features": ["白内障手术", "LASIK与屈光手术", "视网膜治疗", "角膜移植"]
+    },
+    "fertility": {
+      "title": "辅助生殖",
+      "description": "在世界顶级生育中心进行的高成功率先进生殖医学。",
+      "features": ["试管婴儿与ICSI", "卵子和精子捐赠", "代孕服务", "胚胎植入前基因检测"]
+    },
+    "general": {
+      "title": "普通外科",
+      "description": "由经验丰富的外科医生进行的综合普通外科手术。",
+      "features": ["胃外科", "甲状腺手术", "疝气修复", "胆囊切除"]
+    },
+    "preventive": {
+      "title": "预防健康",
+      "description": "全面的健康检查和早筛早诊 wellness 项目。",
+      "features": ["高管健康筛查", "癌症筛查", "心脏评估", "基因检测"]
+    }
+  },
+  "process": {
+    "title": "我们的服务流程",
+    "subtitle": "从初步咨询到康复，我们处理每一个细节",
+    "step1": {
+      "title": "免费咨询",
+      "description": "提交您的医学报告，24小时内获得中国顶级专家的意见。"
+    },
+    "step2": {
+      "title": "治疗方案",
+      "description": "收到详细的治疗方案，包括医院选择、医生简介和费用估算。"
+    },
+    "step3": {
+      "title": "行程安排",
+      "description": "我们处理签证协助、机票预订、机场接送和住宿安排。"
+    },
+    "step4": {
+      "title": "治疗与康复",
+      "description": "在您的专属医疗协调员陪同下，在世界级医疗机构接受治疗。"
+    }
+  },
+  "testimonials": {
+    "title": "患者评价",
+    "subtitle": "来自国际患者的真实经历"
+  },
+  "cta": {
+    "title": "立即开始您的医疗之旅",
+    "description": "获取免费咨询和个性化治疗方案。我们的团队全天候通过WhatsApp为您解答。",
+    "freeOpinion": "24小时内获得免费医疗意见",
+    "costEstimate": "来自顶级医院的详细费用估算",
+    "travelAssistance": "行程安排和签证协助",
+    "chatWhatsApp": "WhatsApp在线咨询",
+    "call": "+86 15711112233"
+  },
+  "footer": {
+    "tagline": "您在中国享受优质医疗服务的可信赖伙伴。",
+    "quickLinks": "快速链接",
+    "contactUs": "联系我们",
+    "connect": "联系我们",
+    "whatsappNote": "WhatsApp即时咨询",
+    "copyright": "爱康医旅 版权所有"
+  },
+  "about": {
+    "whoWeAre": {
+      "title": "关于我们",
+      "p1": "爱康医旅致力于让国际患者获得优质医疗服务。我们专注于为来自美国和印度尼西亚的患者提供全面的医疗旅游服务，从初步咨询到完全康复提供无缝衔接的旅程。",
+      "p2": "虽然我们不拥有医院，但我们与中国顶级JCI认证医疗机构建立了牢固的合作关系，让患者能够获得尖端技术和国际培训专家的服务。"
+    },
+    "stats": {
+      "patients": "5000+",
+      "patientsLabel": "服务患者",
+      "success": "95%+",
+      "successLabel": "成功率"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "description": "通过无缝、透明、个性化的服务体验，让国际患者获得中国世界级医疗服务。"
+    },
+    "vision": {
+      "title": "我们的愿景",
+      "description": "成为中国医疗旅游领域最值得信赖的品牌，为患者护理和国际医疗可及性设定新标准。"
+    },
+    "values": {
+      "title": "我们的价值观",
+      "description": "以同情心、诚信、透明和卓越为核心。您的健康和幸福是我们的首要任务。"
+    },
+    "whyChoose": {
+      "title": "为什么选择爱康？",
+      "subtitle": "我们与其他医疗旅游提供商的不同之处",
+      "verified": {
+        "title": "认证合作医院",
+        "description": "我们只与符合国际质量和安全标准的JCI认证医院合作。"
+      },
+      "personal": {
+        "title": "专属医疗协调员",
+        "description": "每位患者配备双语协调员，在整个医疗过程中提供24/7服务。"
+      },
+      "transparent": {
+        "title": "透明定价",
+        "description": "无隐藏费用或意外。我们提供详细的费用估算，让您在出行前了解清楚。"
+      },
+      "aftercare": {
+        "title": "全面术后护理",
+        "description": "您回家后我们继续提供支持，包括远程医疗随访和康复指导。"
+      },
+      "fastTrack": {
+        "title": "零等待时间",
+        "description": "与顶级专家快速预约。到达后7天内安排手术。"
+      },
+      "logistics": {
+        "title": "全程旅行支持",
+        "description": "从签证协助到住宿和本地交通，我们处理所有后勤工作。"
+      }
+    },
+    "promise": {
+      "title": "我们对您的承诺",
+      "items": [
+        "免费初步医疗咨询和第二意见",
+        "根据您的需求量身定制治疗方案",
+        "透明定价，无隐藏费用",
+        "通过WhatsApp和电话提供24/7支持",
+        "机场接送和本地交通协助",
+        "医院附近住宿推荐",
+        "就医期间提供翻译服务",
+        "术后随访和远程医疗支持",
+        "协助处理医疗报告和文档",
+        "康复支持和协调"
+      ]
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "获取免费医疗咨询。我们全天候为您服务。",
+    "getInTouch": "联系我们",
+    "getInTouchDesc": "无论您是对我们的服务有疑问、需要帮助规划医疗行程，还是想要第二意见，我们的团队随时为您服务。",
+    "whatsapp": {
+      "label": "WhatsApp（首选）",
+      "value": "+86 15711112233"
+    },
+    "phone": {
+      "label": "电话",
+      "value1": "+86 15711112233",
+      "value2": "+86 15855159472"
+    },
+    "email": {
+      "label": "邮箱",
+      "value": "info@aikangmedtour.com"
+    },
+    "hours": {
+      "label": "工作时间",
+      "value": "24/7 全天候支持"
+    },
+    "quickResponse": {
+      "title": "快速响应保证",
+      "description": "WhatsApp咨询通常1小时内回复。邮件咨询24小时内回复。"
+    },
+    "form": {
+      "title": "向我们发送咨询",
+      "name": "姓名",
+      "namePlaceholder": "输入您的姓名",
+      "email": "邮箱地址",
+      "emailPlaceholder": "your@email.com",
+      "phone": "电话/WhatsApp",
+      "phonePlaceholder": "+1 234 567 8900",
+      "country": "国家",
+      "countrySelect": "选择国家",
+      "usa": "美国",
+      "indonesia": "印度尼西亚",
+      "other": "其他",
+      "service": "感兴趣的服务",
+      "serviceSelect": "选择服务",
+      "message": "您的留言",
+      "messagePlaceholder": "请描述您的病情和需求...",
+      "submit": "提交咨询",
+      "successTitle": "谢谢！",
+      "successMessage": "您的咨询已成功提交。我们的医疗团队将审核您的情况并在24小时内与您联系。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": {
+        "q": "如何开始我的中国医疗之旅？",
+        "a": "只需通过WhatsApp或电子邮件联系我们并提交您的医学报告。我们的团队将为您安排与中国顶级专家的会诊，并在24小时内为您提供治疗方案和费用估算。"
+      },
+      "q2": {
+        "q": "与美国治疗相比能节省多少费用？",
+        "a": "大多数医疗程序在中国的费用比美国低60-80%，同时保持同等或更好的医疗质量。例如，心脏搭桥手术在中国的费用为12,000-25,000美元，而在美国为100,000-150,000美元。"
+      },
+      "q3": {
+        "q": "联系您后多久可以安排手术？",
+        "a": "我们通常可以在您抵达中国后7天内安排手术预约。零等待时间政策是中国医疗的主要优势之一。"
+      },
+      "q4": {
+        "q": "你们协助办理签证和旅行安排吗？",
+        "a": "是的，我们提供全面协助，包括医疗签证邀请函、机票预订、机场接送和合作医院附近的住宿安排。"
+      },
+      "q5": {
+        "q": "你们提供哪些语言支持？",
+        "a": "我们所有的医疗协调员都是双语的。我们还会在所有医院就诊和咨询期间提供专业医疗口译服务，确保您与医疗团队的清晰沟通。"
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "管理员登录",
+      "email": "邮箱地址",
+      "password": "密码",
+      "submit": "登录",
+      "error": "邮箱或密码错误"
+    },
+    "inquiries": {
+      "title": "客户咨询",
+      "logout": "退出登录",
+      "noData": "暂无咨询",
+      "columns": {
+        "id": "ID",
+        "name": "姓名",
+        "email": "邮箱",
+        "phone": "电话",
+        "country": "国家",
+        "service": "服务",
+        "message": "留言",
+        "date": "日期"
+      }
+    }
+  }
+}

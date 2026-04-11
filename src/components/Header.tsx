@@ -1,25 +1,29 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X, Phone, MessageCircle } from 'lucide-react'
-
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-]
+import {useState} from 'react';
+import Link from 'next/link';
+import {useLocale, useTranslations} from 'next-intl';
+import {Menu, X, MessageCircle} from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const locale = useLocale();
+  const t = useTranslations('nav');
+
+  const navigation = [
+    {name: t('home'), href: `/${locale}`},
+    {name: t('services'), href: `/${locale}/services`},
+    {name: t('about'), href: `/${locale}/about`},
+    {name: t('contact'), href: `/${locale}/contact`},
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href={`/${locale}`} className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">爱</span>
               </div>
@@ -37,6 +41,7 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            <LanguageSwitcher />
             <a
               href="https://wa.me/8615711112233"
               target="_blank"
@@ -51,14 +56,10 @@ export default function Header() {
           <div className="flex md:hidden">
             <button
               type="button"
-              className="text-gray-700"
+              className="text-gray-700 mr-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -76,6 +77,9 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+              <div className="px-3 py-2">
+                <LanguageSwitcher />
+              </div>
               <a
                 href="https://wa.me/8615711112233"
                 target="_blank"
@@ -90,5 +94,5 @@ export default function Header() {
         )}
       </nav>
     </header>
-  )
+  );
 }
