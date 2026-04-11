@@ -1,6 +1,8 @@
 import {getTranslations} from 'next-intl/server';
 import {Target, Eye, Heart, Shield, Users, Award, CheckCircle, MessageCircle} from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AboutPage({params}: {params: {locale: string}}) {
   const t = await getTranslations('about');
 
