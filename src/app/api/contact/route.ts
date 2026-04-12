@@ -2,24 +2,15 @@ import {NextResponse} from 'next/server';
 import postgres from 'postgres';
 
 function getSql() {
-  const host = process.env.PGHOST || process.env.POSTGRES_HOST;
-  const user = process.env.PGUSER || process.env.POSTGRES_USER;
-  const password = process.env.PGPASSWORD || process.env.POSTGRES_PASSWORD;
-  const database = process.env.PGDATABASE || process.env.POSTGRES_DATABASE || 'neondb';
+  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
   
-  console.log('DB Config:', { host, user, hasPassword: !!password, database });
-  
-  if (!host || !user || !password) {
-    throw new Error(`Missing database config: host=${!!host}, user=${!!user}, password=${!!password}`);
+  if (!connectionString) {
+    throw new Error('No database URL found');
   }
   
-  return postgres({
-    host,
-    user,
-    password,
-    database,
+  return postgres(connectionString, {
     ssl: 'require',
-    timeout: 10,
+    connect_timeout: 10,
   });
 }
 
