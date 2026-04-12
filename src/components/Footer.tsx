@@ -14,7 +14,7 @@ export default async function Footer() {
               <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">爱</span>
               </div>
-              <span className="font-bold text-xl">爱康医旅</span>
+              <span className="font-bold text-xl">AiKang Medical Tour</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               {t('tagline')}

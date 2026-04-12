@@ -27,7 +27,7 @@ export default function Header() {
               <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">爱</span>
               </div>
-              <span className="font-bold text-xl text-gray-900">爱康医旅</span>
+              <span className="font-bold text-xl text-gray-900">AiKang Medical Tour</span>
             </Link>
           </div>
 
