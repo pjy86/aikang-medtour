@@ -16,8 +16,77 @@ import {
   Phone,
 } from 'lucide-react';
 
+interface CmsData {
+  settings?: {
+    logo?: string;
+    siteTitle?: {en?: string, zh?: string, id?: string};
+    heroTitle?: {en?: string, zh?: string, id?: string};
+    heroSubtitle?: {en?: string, zh?: string, id?: string};
+    heroBadge?: {en?: string, zh?: string, id?: string};
+    whatsappNumber?: string;
+    contactEmail?: string;
+    contactPhone?: string;
+  };
+  advantages?: Array<{
+    id: string;
+    icon: string;
+    title: {en?: string, zh?: string, id?: string};
+    description: {en?: string, zh?: string, id?: string};
+  }>;
+  services?: Array<{
+    id: string;
+    icon: string;
+    title: {en?: string, zh?: string, id?: string};
+    description: {en?: string, zh?: string, id?: string};
+    typicalCost?: string;
+    vsUsCost?: string;
+  }>;
+  testimonials?: Array<{
+    id: string;
+    name: string;
+    country: string;
+    treatment: string;
+    quote: {en?: string, zh?: string, id?: string};
+    rating: number;
+  }>;
+}
+
+async function getCmsData(locale: string): Promise<CmsData> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/cms?key=settings`);
+    const settingsData = res.ok ? await res.json() : {};
+    
+    const advantagesRes = await fetch(`${baseUrl}/api/cms?key=advantages`);
+    const advantagesData = advantagesRes.ok ? await advantagesRes.json() : {};
+    
+    const servicesRes = await fetch(`${baseUrl}/api/cms?key=services`);
+    const servicesData = servicesRes.ok ? await servicesRes.json() : {};
+    
+    const testimonialsRes = await fetch(`${baseUrl}/api/cms?key=testimonials`);
+    const testimonialsData = testimonialsRes.ok ? await testimonialsRes.json() : {};
+    
+    return {
+      settings: settingsData.value || {},
+      advantages: advantagesData.value || [],
+      services: servicesData.value || [],
+      testimonials: testimonialsData.value || [],
+    };
+  } catch (error) {
+    console.error('Error fetching CMS data:', error);
+    return {};
+  }
+}
+
+function getLocalizedText(obj: {[key: string]: string} | undefined, locale: string): string {
+  if (!obj) return '';
+  return obj[locale] || obj.en || obj.zh || Object.values(obj)[0] || '';
+}
+
 export default async function HomePage({params}: {params: {locale: string}}) {
   setRequestLocale(params.locale);
+  const locale = params.locale;
+  
   const t = await getTranslations('hero');
   const tWhy = await getTranslations('whyChoose');
   const tServices = await getTranslations('services');
@@ -25,6 +94,26 @@ export default async function HomePage({params}: {params: {locale: string}}) {
   const tTestimonials = await getTranslations('testimonials');
   const tCta = await getTranslations('cta');
   const tForm = await getTranslations('contact.form');
+  
+  const cmsData = await getCmsData(locale);
+  
+  const heroBadge = getLocalizedText(cmsData.settings?.heroBadge, locale) || t('badge');
+  const heroTitle = getLocalizedText(cmsData.settings?.heroTitle, locale) || t('title');
+  const heroTitleHighlight = t('titleHighlight');
+  const heroTitleSuffix = t('titleSuffix');
+  const heroDescription = getLocalizedText(cmsData.settings?.heroSubtitle, locale) || t('description');
+
+  const advantages = cmsData.advantages && cmsData.advantages.length > 0 
+    ? cmsData.advantages 
+    : null;
+
+  const services = cmsData.services && cmsData.services.length > 0
+    ? cmsData.services.slice(0, 4)
+    : null;
+
+  const testimonials = cmsData.testimonials && cmsData.testimonials.length > 0
+    ? cmsData.testimonials
+    : null;
 
   return (
     <main>
@@ -39,18 +128,18 @@ export default async function HomePage({params}: {params: {locale: string}}) {
             <div>
               <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Star className="w-4 h-4" />
-                <span>{t('badge')}</span>
+                <span>{heroBadge}</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                {t('title')} <span className="text-primary-600">{t('titleHighlight')}</span><br />
-                {t('titleSuffix')}
+                {heroTitle} <span className="text-primary-600">{heroTitleHighlight}</span><br />
+                {heroTitleSuffix}
               </h1>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                {t('description')}
+                {heroDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://wa.me/8615711112233"
+                  href={`https://wa.me/${(cmsData.settings?.whatsappNumber || '8615711112233').replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center space-x-2 bg-accent-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-accent-600 transition-all hover:shadow-lg"
@@ -76,18 +165,18 @@ export default async function HomePage({params}: {params: {locale: string}}) {
                       <Activity className="w-8 h-8 text-primary-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">Heart Bypass Surgery</h3>
+                      <h3 className="font-semibold text-gray-900">{getLocalizedText(services?.[0]?.title, locale) || tServices('cardiac.title')}</h3>
                       <p className="text-sm text-gray-500">Top Chinese Hospital</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-gray-500">Cost in China</p>
-                      <p className="text-xl font-bold text-accent-600">$15,000</p>
+                      <p className="text-xl font-bold text-accent-600">{services?.[0]?.typicalCost || '$15,000'}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-gray-500">Cost in US</p>
-                      <p className="text-xl font-bold text-gray-400 line-through">$100,000+</p>
+                      <p className="text-xl font-bold text-gray-400 line-through">{services?.[0]?.vsUsCost || '$100,000+'}</p>
                     </div>
                   </div>
                 </div>
@@ -127,48 +216,62 @@ export default async function HomePage({params}: {params: {locale: string}}) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <Shield className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('worldClass.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('worldClass.description')}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <Clock className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('zeroWaiting.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('zeroWaiting.description')}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <CheckCircle className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('savings.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('savings.description')}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <Users className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('personalCare.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('personalCare.description')}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <Plane className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('travelSupport.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('travelSupport.description')}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
-                <Award className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('aftercare.title')}</h3>
-              <p className="text-gray-600 leading-relaxed">{tWhy('aftercare.description')}</p>
-            </div>
+            {advantages ? (
+              advantages.map((item) => (
+                <div key={item.id} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <span className="text-2xl">{item.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{getLocalizedText(item.title, locale)}</h3>
+                  <p className="text-gray-600 leading-relaxed">{getLocalizedText(item.description, locale)}</p>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <Shield className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('worldClass.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('worldClass.description')}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <Clock className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('zeroWaiting.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('zeroWaiting.description')}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <CheckCircle className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('savings.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('savings.description')}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <Users className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('personalCare.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('personalCare.description')}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <Plane className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('travelSupport.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('travelSupport.description')}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-6">
+                    <Award className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{tWhy('aftercare.title')}</h3>
+                  <p className="text-gray-600 leading-relaxed">{tWhy('aftercare.description')}</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -181,26 +284,38 @@ export default async function HomePage({params}: {params: {locale: string}}) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-              <Heart className="w-10 h-10 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{tServices('cardiac.title')}</h3>
-              <p className="text-primary-100 text-sm">{tServices('cardiac.description')}</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-              <Stethoscope className="w-10 h-10 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{tServices('oncology.title')}</h3>
-              <p className="text-primary-100 text-sm">{tServices('oncology.description')}</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-              <Activity className="w-10 h-10 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{tServices('orthopedics.title')}</h3>
-              <p className="text-primary-100 text-sm">{tServices('orthopedics.description')}</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
-              <Shield className="w-10 h-10 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{tServices('preventive.title')}</h3>
-              <p className="text-primary-100 text-sm">{tServices('preventive.description')}</p>
-            </div>
+            {services ? (
+              services.map((item) => (
+                <div key={item.id} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                  <span className="text-4xl mb-4 block">{item.icon}</span>
+                  <h3 className="text-lg font-semibold mb-2">{getLocalizedText(item.title, locale)}</h3>
+                  <p className="text-primary-100 text-sm">{getLocalizedText(item.description, locale)}</p>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                  <Heart className="w-10 h-10 mb-4" />
+                  <h3 className="text-lg font-semibold mb-2">{tServices('cardiac.title')}</h3>
+                  <p className="text-primary-100 text-sm">{tServices('cardiac.description')}</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                  <Stethoscope className="w-10 h-10 mb-4" />
+                  <h3 className="text-lg font-semibold mb-2">{tServices('oncology.title')}</h3>
+                  <p className="text-primary-100 text-sm">{tServices('oncology.description')}</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                  <Activity className="w-10 h-10 mb-4" />
+                  <h3 className="text-lg font-semibold mb-2">{tServices('orthopedics.title')}</h3>
+                  <p className="text-primary-100 text-sm">{tServices('orthopedics.description')}</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors">
+                  <Shield className="w-10 h-10 mb-4" />
+                  <h3 className="text-lg font-semibold mb-2">{tServices('preventive.title')}</h3>
+                  <p className="text-primary-100 text-sm">{tServices('preventive.description')}</p>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="text-center mt-12">
@@ -225,63 +340,87 @@ export default async function HomePage({params}: {params: {locale: string}}) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                "The healthcare services in China exceeded my expectations; highly recommend for medical tourism!"
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">M</span>
+            {testimonials ? (
+              testimonials.slice(0, 3).map((item) => (
+                <div key={item.id} className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className={`w-5 h-5 ${i <= item.rating ? 'text-yellow-400' : 'text-gray-300'} fill-current`} />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">"{getLocalizedText(item.quote, locale)}"</p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">{item.name.charAt(0)}</span>
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold text-gray-900">{item.name}</p>
+                      <p className="text-sm text-gray-500">{item.country} • {item.treatment}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="ml-4">
-                  <p className="font-semibold text-gray-900">Michael Thompson</p>
-                  <p className="text-sm text-gray-500">USA • Heart Bypass</p>
+              ))
+            ) : (
+              <>
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    "The healthcare services in China exceeded my expectations; highly recommend for medical tourism!"
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">M</span>
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold text-gray-900">Michael Thompson</p>
+                      <p className="text-sm text-gray-500">USA • Heart Bypass</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                "Exceptional care and support throughout my treatment; truly a life-changing experience!"
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">S</span>
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    "Exceptional care and support throughout my treatment; truly a life-changing experience!"
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">S</span>
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold text-gray-900">Sarah Wijaya</p>
+                      <p className="text-sm text-gray-500">Indonesia • Spinal Surgery</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="ml-4">
-                  <p className="font-semibold text-gray-900">Sarah Wijaya</p>
-                  <p className="text-sm text-gray-500">Indonesia • Spinal Surgery</p>
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    "AiKang made my medical journey stress-free. The quality of care was exceptional."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">R</span>
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-semibold text-gray-900">Robert Chen</p>
+                      <p className="text-sm text-gray-500">USA • Joint Replacement</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                "AiKang made my medical journey stress-free. The quality of care was exceptional."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">R</span>
-                </div>
-                <div className="ml-4">
-                  <p className="font-semibold text-gray-900">Robert Chen</p>
-                  <p className="text-sm text-gray-500">USA • Joint Replacement</p>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -308,7 +447,7 @@ export default async function HomePage({params}: {params: {locale: string}}) {
               </div>
               <div className="mt-8 flex items-center space-x-4">
                 <a
-                  href="https://wa.me/8615711112233"
+                  href={`https://wa.me/${(cmsData.settings?.whatsappNumber || '8615711112233').replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 bg-accent-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-accent-600 transition-colors"
@@ -316,7 +455,7 @@ export default async function HomePage({params}: {params: {locale: string}}) {
                   <MessageCircle className="w-5 h-5" />
                   <span>{tCta('chatWhatsApp')}</span>
                 </a>
-                <a href="tel:+8615711112233" className="flex items-center space-x-2 text-gray-700 hover:text-primary-600">
+                <a href={`tel:${cmsData.settings?.contactPhone || '+8615711112233'}`} className="flex items-center space-x-2 text-gray-700 hover:text-primary-600">
                   <Phone className="w-5 h-5" />
                   <span>{tCta('call')}</span>
                 </a>
