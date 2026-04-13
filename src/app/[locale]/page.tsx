@@ -15,7 +15,6 @@ import {
   ArrowRight,
   Phone,
 } from 'lucide-react';
-import postgres from 'postgres';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,58 +54,33 @@ interface CmsData {
 }
 
 async function getCmsData(): Promise<CmsData> {
-  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   
-  if (!connectionString) {
-    console.error('[CMS] No database connection string found');
-    console.error('[CMS] DATABASE_URL_UNPOOLED:', process.env.DATABASE_URL_UNPOOLED ? 'set' : 'not set');
-    console.error('[CMS] DATABASE_URL:', process.env.DATABASE_URL ? 'set' : 'not set');
-    return {};
-  }
-  
-  let sql = null;
   try {
-    sql = postgres(connectionString, {
-      ssl: 'require',
-      connect_timeout: 10,
-    });
+    const [settingsRes, advantagesRes, servicesRes, testimonialsRes] = await Promise.all([
+      fetch(`${baseUrl}/api/cms?key=settings`, { cache: 'no-store' }),
+      fetch(`${baseUrl}/api/cms?key=advantages`, { cache: 'no-store' }),
+      fetch(`${baseUrl}/api/cms?key=services`, { cache: 'no-store' }),
+      fetch(`${baseUrl}/api/cms?key=testimonials`, { cache: 'no-store' }),
+    ]);
     
-    console.log('[CMS] Connecting to database...');
-    const settingsRows = await sql`SELECT value FROM cms_content WHERE key = 'settings'`;
-    const advantagesRows = await sql`SELECT value FROM cms_content WHERE key = 'advantages'`;
-    const servicesRows = await sql`SELECT value FROM cms_content WHERE key = 'services'`;
-    const testimonialsRows = await sql`SELECT value FROM cms_content WHERE key = 'testimonials'`;
-    
-    console.log('[CMS] Query results:', {
-      settingsCount: settingsRows.length,
-      advantagesCount: advantagesRows.length,
-      servicesCount: servicesRows.length,
-      testimonialsCount: testimonialsRows.length,
-    });
-    
-    await sql.end();
-    
-    const parseValue = (row: any) => {
-      if (!row) return null;
-      if (typeof row.value === 'string') {
-        try {
-          return JSON.parse(row.value);
-        } catch {
-          return row.value;
-        }
-      }
-      return row.value;
-    };
+    const [settingsData, advantagesData, servicesData, testimonialsData] = await Promise.all([
+      settingsRes.ok ? settingsRes.json() : null,
+      advantagesRes.ok ? advantagesRes.json() : null,
+      servicesRes.ok ? servicesRes.json() : null,
+      testimonialsRes.ok ? testimonialsRes.json() : null,
+    ]);
     
     return {
-      settings: parseValue(settingsRows[0]) || {},
-      advantages: parseValue(advantagesRows[0]) || [],
-      services: parseValue(servicesRows[0]) || [],
-      testimonials: parseValue(testimonialsRows[0]) || [],
+      settings: settingsData?.value || {},
+      advantages: advantagesData?.value || [],
+      services: servicesData?.value || [],
+      testimonials: testimonialsData?.value || [],
     };
   } catch (error) {
     console.error('[CMS] Error fetching CMS data:', error);
-    if (sql) await sql.end();
     return {};
   }
 }
