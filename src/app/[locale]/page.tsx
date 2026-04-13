@@ -24,6 +24,7 @@ export default async function HomePage({params}: {params: {locale: string}}) {
   const tProcess = await getTranslations('process');
   const tTestimonials = await getTranslations('testimonials');
   const tCta = await getTranslations('cta');
+  const tForm = await getTranslations('contact.form');
 
   return (
     <main>
@@ -324,43 +325,48 @@ export default async function HomePage({params}: {params: {locale: string}}) {
             <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-3xl p-8">
               <form action={`/${params.locale}/contact`} method="GET" className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{tForm('name')}</label>
                   <input
                     type="text"
+                    name="name"
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                    placeholder="Enter your name"
+                    placeholder={tForm('namePlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{tForm('email')}</label>
                   <input
                     type="email"
+                    name="email"
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                    placeholder="your@email.com"
+                    placeholder={tForm('emailPlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Your Country</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none">
-                    <option>United States</option>
-                    <option>Indonesia</option>
-                    <option>Other</option>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{tForm('country')}</label>
+                  <select name="country" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none">
+                    <option value="">{tForm('countrySelect')}</option>
+                    <option value="United States">{tForm('usa')}</option>
+                    <option value="Indonesia">{tForm('indonesia')}</option>
+                    <option value="Other">{tForm('other')}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Medical Service Interested In</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none">
-                    <option>Cardiac Surgery</option>
-                    <option>Oncology</option>
-                    <option>Orthopedics</option>
-                    <option>Other</option>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{tForm('service')}</label>
+                  <select name="service" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none">
+                    <option value="">{tForm('serviceSelect')}</option>
+                    <option value="Cardiac Surgery">{tServices('cardiac.title')}</option>
+                    <option value="Oncology">{tServices('oncology.title')}</option>
+                    <option value="Orthopedics">{tServices('orthopedics.title')}</option>
+                    <option value="Neurology">{tServices('neurology.title')}</option>
+                    <option value="Other">{tForm('other')}</option>
                   </select>
                 </div>
                 <button
                   type="submit"
                   className="w-full bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
                 >
-                  Get Free Quote
+                  {tForm('submit')}
                 </button>
               </form>
             </div>

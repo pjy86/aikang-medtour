@@ -245,8 +245,19 @@
       "message": "Pesan Anda",
       "messagePlaceholder": "Silakan jelaskan kondisi medis dan apa yang Anda cari...",
       "submit": "Kirim Inquiry",
+      "submitAnother": "Kirim Inquiry Lain",
       "successTitle": "Terima Kasih!",
       "successMessage": "Inquiry Anda telah berhasil dikirim. Tim medis kami akan meninjau kasus Anda dan menghubungi Anda dalam 24 jam."
+    },
+    "services": {
+      "cardiac": "Bedah Jantung",
+      "oncology": "Onkologi",
+      "orthopedics": "Ortopedi",
+      "neurology": "Neurologi",
+      "ophthalmology": "Oftalmologi",
+      "fertility": "Perawatan Fertilitas",
+      "general": "Bedah Umum",
+      "preventive": "Kesehatan Preventif"
     },
     "faq": {
       "title": "Pertanyaan yang Sering Diajukan",

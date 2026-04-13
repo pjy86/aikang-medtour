@@ -245,8 +245,19 @@
       "message": "您的留言",
       "messagePlaceholder": "请描述您的病情和需求...",
       "submit": "提交咨询",
+      "submitAnother": "再次提交咨询",
       "successTitle": "谢谢！",
       "successMessage": "您的咨询已成功提交。我们的医疗团队将审核您的情况并在24小时内与您联系。"
+    },
+    "services": {
+      "cardiac": "心脏外科",
+      "oncology": "肿瘤科",
+      "orthopedics": "骨科",
+      "neurology": "神经科",
+      "ophthalmology": "眼科",
+      "fertility": "辅助生殖",
+      "general": "普通外科",
+      "preventive": "预防健康"
     },
     "faq": {
       "title": "常见问题",

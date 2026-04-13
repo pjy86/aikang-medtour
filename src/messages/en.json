@@ -245,8 +245,19 @@
       "message": "Your Message",
       "messagePlaceholder": "Please describe your medical condition and what you're looking for...",
       "submit": "Submit Inquiry",
+      "submitAnother": "Submit Another Inquiry",
       "successTitle": "Thank You!",
       "successMessage": "Your inquiry has been submitted successfully. Our medical team will review your case and contact you within 24 hours."
+    },
+    "services": {
+      "cardiac": "Cardiac Surgery",
+      "oncology": "Oncology",
+      "orthopedics": "Orthopedics",
+      "neurology": "Neurology",
+      "ophthalmology": "Ophthalmology",
+      "fertility": "Fertility Treatment",
+      "general": "General Surgery",
+      "preventive": "Preventive Health"
     },
     "faq": {
       "title": "Frequently Asked Questions",

@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import {getTranslations} from 'next-intl/server';
+import {getTranslations, getLocale} from 'next-intl/server';
 import {MessageCircle, Phone, Mail, Clock} from 'lucide-react';
 
 export default async function Footer() {
   const t = await getTranslations('footer');
+  const tNav = await getTranslations('nav');
+  const locale = await getLocale();
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -24,10 +26,10 @@ export default async function Footer() {
           <div>
             <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/en" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/en/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/en/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/en/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href={`/${locale}`} className="hover:text-white transition-colors">{tNav('home')}</Link></li>
+              <li><Link href={`/${locale}/services`} className="hover:text-white transition-colors">{tNav('services')}</Link></li>
+              <li><Link href={`/${locale}/about`} className="hover:text-white transition-colors">{tNav('about')}</Link></li>
+              <li><Link href={`/${locale}/contact`} className="hover:text-white transition-colors">{tNav('contact')}</Link></li>
             </ul>
           </div>
 
