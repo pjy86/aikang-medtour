@@ -46,7 +46,15 @@
 - [x] 客户数据查看页面
 - [x] Nodemailer SMTP 邮件通知（用户提交表单后发送邮件通知）
 
-### 7. 表单与多语言
+### 7. CMS 内容管理
+- [x] CMS 后台管理页面（/admin/cms）
+- [x] 网站设置管理（Logo、标题等）
+- [x] 优势说明管理（增删改）
+- [x] 服务项目管理（增删改）
+- [x] 患者评价管理（增删改）
+- [x] 表单字段管理（增删改）
+
+### 8. 表单与多语言
 - [x] 首页和联系页表单统一
 - [x] 联系页完整翻译支持（中/英/印尼语）
 - [x] Footer 链接语言自适应
@@ -79,6 +87,22 @@
 | password | VARCHAR(255) | 密码（加密） |
 | created_at | TIMESTAMP | 创建时间 |
 
+### cms_content 表（CMS内容）
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| key | VARCHAR(100) | 内容键（主键） |
+| value | JSONB | 内容值（多语言支持） |
+| updated_at | TIMESTAMP | 更新时间 |
+
+**CMS Keys 说明**:
+| Key | 内容 | 结构 |
+|-----|------|------|
+| settings | 网站设置 | {logo, siteTitle, heroTitle, heroSubtitle, whatsappNumber, contactEmail, contactPhone} |
+| advantages | 优势说明 | [{id, icon, title: {en,zh,id}, description: {en,zh,id}}] |
+| services | 服务项目 | [{id, icon, title: {en,zh,id}, description: {en,zh,id}, features: {en:[],zh:[],id:[]}, typicalCost, vsUsCost}] |
+| testimonials | 患者评价 | [{id, name, country, treatment, quote: {en,zh,id}, rating}] |
+| formFields | 表单字段 | [{id, name, type, label: {en,zh,id}, placeholder: {en,zh,id}, required, options, order}] |
+
 ## 需求变更记录
 
 | 日期 | 变更内容 | 确认状态 |
@@ -92,6 +116,7 @@
 | 2026-04-13 | 首页和联系页表单字段统一 | 已完成 |
 | 2026-04-13 | Nodemailer SMTP 邮件通知功能 | 已完成 |
 | 2026-04-13 | Footer 链接语言自适应修复 | 已完成 |
+| 2026-04-13 | CMS 后台内容管理系统 | 已完成 |
 
 ## Vercel Postgres 数据库配置
 
@@ -114,16 +139,20 @@ CREATE TABLE IF NOT EXISTS inquiries (
   message TEXT,
   created_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE INDEX IF NOT EXISTS idx_inquiries_created_at ON inquiries(created_at DESC);
+
+CREATE TABLE IF NOT EXISTS cms_content (
+  key VARCHAR(100) PRIMARY KEY,
+  value JSONB NOT NULL,
+  updated_at TIMESTAMP DEFAULT NOW()
+);
 ```
-
-或使用 `scripts/create-table.sql` 文件。
-
-### 步骤 3：连接数据库
-Vercel 会自动设置 `POSTGRES_URL` 环境变量，代码无需修改。
 
 ### 管理员后台
 - 登录页面: `/admin/login`
 - 数据查看: `/admin/inquiries`
+- CMS 管理: `/admin/cms`
 - 默认账号: `admin@aikangmedtour.com` / `admin123`
 
 ## SMTP 邮件通知配置

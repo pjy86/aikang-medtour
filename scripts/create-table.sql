@@ -12,3 +12,10 @@ CREATE TABLE IF NOT EXISTS inquiries (
 
 -- Create index for faster queries
 CREATE INDEX IF NOT EXISTS idx_inquiries_created_at ON inquiries(created_at DESC);
+
+-- Create CMS content table for dynamic content management
+CREATE TABLE IF NOT EXISTS cms_content (
+  key VARCHAR(100) PRIMARY KEY,
+  value JSONB NOT NULL,
+  updated_at TIMESTAMP DEFAULT NOW()
+);
