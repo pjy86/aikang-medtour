@@ -18,7 +18,6 @@
 - [x] Next.js 14 + TypeScript + Tailwind CSS
 - [x] 响应式设计，支持移动端和桌面端
 - [x] WhatsApp 一键联系功能
-- [x] Vercel Forms 表单数据收集（已废弃）
 - [x] 静态导出部署到 Vercel
 
 ### 3. 联系信息
@@ -45,6 +44,12 @@
 - [x] API 路由（联系表单写入数据库）
 - [x] 管理员登录页面
 - [x] 客户数据查看页面
+- [x] Nodemailer SMTP 邮件通知（用户提交表单后发送邮件通知）
+
+### 7. 表单与多语言
+- [x] 首页和联系页表单统一
+- [x] 联系页完整翻译支持（中/英/印尼语）
+- [x] Footer 链接语言自适应
 
 ## 待开发功能
 - [ ] 医院合作伙伴展示
@@ -83,6 +88,10 @@
 | 2026-04-11 | 增加 Vercel Postgres 数据库存储表单数据 | 已完成 |
 | 2026-04-11 | 增加管理员后台查看客户数据 | 已完成 |
 | 2026-04-11 | 增加 Discord 联系方式 | 已添加 |
+| 2026-04-13 | 联系页完整翻译支持（使用 i18n） | 已完成 |
+| 2026-04-13 | 首页和联系页表单字段统一 | 已完成 |
+| 2026-04-13 | Nodemailer SMTP 邮件通知功能 | 已完成 |
+| 2026-04-13 | Footer 链接语言自适应修复 | 已完成 |
 
 ## Vercel Postgres 数据库配置
 
@@ -116,3 +125,28 @@ Vercel 会自动设置 `POSTGRES_URL` 环境变量，代码无需修改。
 - 登录页面: `/admin/login`
 - 数据查看: `/admin/inquiries`
 - 默认账号: `admin@aikangmedtour.com` / `admin123`
+
+## SMTP 邮件通知配置
+
+用户提交联系表单后，系统会自动发送邮件通知。
+
+### 环境变量配置
+在 Vercel 项目设置中添加以下环境变量：
+
+| 变量名 | 说明 | 示例值 |
+|--------|------|--------|
+| SMTP_HOST | SMTP 服务器地址 | smtp.gmail.com |
+| SMTP_PORT | SMTP 端口 | 587 |
+| SMTP_SECURE | 是否使用 SSL | false |
+| SMTP_USER | 发件邮箱 | your-email@gmail.com |
+| SMTP_PASS | 邮箱密码/App Password | xxxx xxxx xxxx xxxx |
+| SMTP_FROM | 发件人显示名称 | AiKang Medical Tour <your-email@gmail.com> |
+| NOTIFICATION_EMAIL | 通知接收邮箱 | info@aikangmedtour.com |
+
+### Gmail 配置说明
+1. 登录 Google 账号 → 安全管理 → **两步验证**（必须开启）
+2. 进入 **应用密码** → 选择应用（邮件）→ 设备（其他）
+3. 生成 16 位应用密码，填入 `SMTP_PASS`
+
+### .env.example 文件
+项目根目录包含 `.env.example` 模板文件，可参考配置。
