@@ -53,17 +53,22 @@ interface CmsData {
 
 async function getCmsData(locale: string): Promise<CmsData> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/cms?key=settings`);
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : process.env.NEXT_PUBLIC_BASE_URL 
+        ? process.env.NEXT_PUBLIC_BASE_URL 
+        : 'http://localhost:3000';
+    
+    const res = await fetch(`${baseUrl}/api/cms?key=settings`, { cache: 'no-store' });
     const settingsData = res.ok ? await res.json() : {};
     
-    const advantagesRes = await fetch(`${baseUrl}/api/cms?key=advantages`);
+    const advantagesRes = await fetch(`${baseUrl}/api/cms?key=advantages`, { cache: 'no-store' });
     const advantagesData = advantagesRes.ok ? await advantagesRes.json() : {};
     
-    const servicesRes = await fetch(`${baseUrl}/api/cms?key=services`);
+    const servicesRes = await fetch(`${baseUrl}/api/cms?key=services`, { cache: 'no-store' });
     const servicesData = servicesRes.ok ? await servicesRes.json() : {};
     
-    const testimonialsRes = await fetch(`${baseUrl}/api/cms?key=testimonials`);
+    const testimonialsRes = await fetch(`${baseUrl}/api/cms?key=testimonials`, { cache: 'no-store' });
     const testimonialsData = testimonialsRes.ok ? await testimonialsRes.json() : {};
     
     return {
