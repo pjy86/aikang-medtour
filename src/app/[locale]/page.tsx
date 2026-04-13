@@ -19,17 +19,6 @@ import postgres from 'postgres';
 
 export const dynamic = 'force-dynamic';
 
-function getSql() {
-  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
-  if (!connectionString) {
-    return null;
-  }
-  return postgres(connectionString, {
-    ssl: 'require',
-    connect_timeout: 10,
-  });
-}
-
 interface CmsData {
   settings?: {
     logo?: string;
@@ -66,28 +55,58 @@ interface CmsData {
 }
 
 async function getCmsData(): Promise<CmsData> {
-  const sql = getSql();
-  if (!sql) {
-    console.error('No database connection string found');
+  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+  
+  if (!connectionString) {
+    console.error('[CMS] No database connection string found');
+    console.error('[CMS] DATABASE_URL_UNPOOLED:', process.env.DATABASE_URL_UNPOOLED ? 'set' : 'not set');
+    console.error('[CMS] DATABASE_URL:', process.env.DATABASE_URL ? 'set' : 'not set');
     return {};
   }
   
+  let sql = null;
   try {
+    sql = postgres(connectionString, {
+      ssl: 'require',
+      connect_timeout: 10,
+    });
+    
+    console.log('[CMS] Connecting to database...');
     const settingsRows = await sql`SELECT value FROM cms_content WHERE key = 'settings'`;
     const advantagesRows = await sql`SELECT value FROM cms_content WHERE key = 'advantages'`;
     const servicesRows = await sql`SELECT value FROM cms_content WHERE key = 'services'`;
     const testimonialsRows = await sql`SELECT value FROM cms_content WHERE key = 'testimonials'`;
     
+    console.log('[CMS] Query results:', {
+      settingsCount: settingsRows.length,
+      advantagesCount: advantagesRows.length,
+      servicesCount: servicesRows.length,
+      testimonialsCount: testimonialsRows.length,
+    });
+    
     await sql.end();
     
+    const parseValue = (row: any) => {
+      if (!row) return null;
+      if (typeof row.value === 'string') {
+        try {
+          return JSON.parse(row.value);
+        } catch {
+          return row.value;
+        }
+      }
+      return row.value;
+    };
+    
     return {
-      settings: settingsRows[0]?.value || {},
-      advantages: advantagesRows[0]?.value || [],
-      services: servicesRows[0]?.value || [],
-      testimonials: testimonialsRows[0]?.value || [],
+      settings: parseValue(settingsRows[0]) || {},
+      advantages: parseValue(advantagesRows[0]) || [],
+      services: parseValue(servicesRows[0]) || [],
+      testimonials: parseValue(testimonialsRows[0]) || [],
     };
   } catch (error) {
-    console.error('Error fetching CMS data:', error);
+    console.error('[CMS] Error fetching CMS data:', error);
+    if (sql) await sql.end();
     return {};
   }
 }
