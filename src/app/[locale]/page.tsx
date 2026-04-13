@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import postgres from 'postgres';
 
+export const dynamic = 'force-dynamic';
+
 function getSql() {
   const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
   if (!connectionString) {

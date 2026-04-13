@@ -14,6 +14,7 @@ export default function AdminCMSSettings() {
   const [saving, setSaving] = useState(false)
   const [settings, setSettings] = useState({
     logo: '',
+    heroBadge: {en: '', zh: '', id: ''},
     siteTitle: {en: '', zh: '', id: ''},
     heroTitle: {en: '', zh: '', id: ''},
     heroSubtitle: {en: '', zh: '', id: ''},
@@ -146,6 +147,20 @@ export default function AdminCMSSettings() {
                       })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-xl"
                       placeholder="AiKang Medical Tour"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-1">Hero Badge</label>
+                    <input
+                      type="text"
+                      value={settings.heroBadge[locale.code as keyof typeof settings.heroBadge] || ''}
+                      onChange={(e) => setSettings({
+                        ...settings,
+                        heroBadge: {...settings.heroBadge, [locale.code]: e.target.value}
+                      })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-xl"
+                      placeholder="Trusted by 5000+ International Patients"
                     />
                   </div>
 
