@@ -15,6 +15,18 @@ import {
   ArrowRight,
   Phone,
 } from 'lucide-react';
+import postgres from 'postgres';
+
+function getSql() {
+  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+  if (!connectionString) {
+    return null;
+  }
+  return postgres(connectionString, {
+    ssl: 'require',
+    connect_timeout: 10,
+  });
+}
 
 interface CmsData {
   settings?: {
@@ -51,31 +63,26 @@ interface CmsData {
   }>;
 }
 
-async function getCmsData(locale: string): Promise<CmsData> {
+async function getCmsData(): Promise<CmsData> {
+  const sql = getSql();
+  if (!sql) {
+    console.error('No database connection string found');
+    return {};
+  }
+  
   try {
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : process.env.NEXT_PUBLIC_BASE_URL 
-        ? process.env.NEXT_PUBLIC_BASE_URL 
-        : 'http://localhost:3000';
+    const settingsRows = await sql`SELECT value FROM cms_content WHERE key = 'settings'`;
+    const advantagesRows = await sql`SELECT value FROM cms_content WHERE key = 'advantages'`;
+    const servicesRows = await sql`SELECT value FROM cms_content WHERE key = 'services'`;
+    const testimonialsRows = await sql`SELECT value FROM cms_content WHERE key = 'testimonials'`;
     
-    const res = await fetch(`${baseUrl}/api/cms?key=settings`, { cache: 'no-store' });
-    const settingsData = res.ok ? await res.json() : {};
-    
-    const advantagesRes = await fetch(`${baseUrl}/api/cms?key=advantages`, { cache: 'no-store' });
-    const advantagesData = advantagesRes.ok ? await advantagesRes.json() : {};
-    
-    const servicesRes = await fetch(`${baseUrl}/api/cms?key=services`, { cache: 'no-store' });
-    const servicesData = servicesRes.ok ? await servicesRes.json() : {};
-    
-    const testimonialsRes = await fetch(`${baseUrl}/api/cms?key=testimonials`, { cache: 'no-store' });
-    const testimonialsData = testimonialsRes.ok ? await testimonialsRes.json() : {};
+    await sql.end();
     
     return {
-      settings: settingsData.value || {},
-      advantages: advantagesData.value || [],
-      services: servicesData.value || [],
-      testimonials: testimonialsData.value || [],
+      settings: settingsRows[0]?.value || {},
+      advantages: advantagesRows[0]?.value || [],
+      services: servicesRows[0]?.value || [],
+      testimonials: testimonialsRows[0]?.value || [],
     };
   } catch (error) {
     console.error('Error fetching CMS data:', error);
@@ -100,7 +107,7 @@ export default async function HomePage({params}: {params: {locale: string}}) {
   const tCta = await getTranslations('cta');
   const tForm = await getTranslations('contact.form');
   
-  const cmsData = await getCmsData(locale);
+  const cmsData = await getCmsData();
   
   const heroBadge = getLocalizedText(cmsData.settings?.heroBadge, locale) || t('badge');
   const heroTitle = getLocalizedText(cmsData.settings?.heroTitle, locale) || t('title');
