@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Phone,
 } from 'lucide-react';
+import postgres from 'postgres';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,34 +54,40 @@ interface CmsData {
   }>;
 }
 
+function getSql() {
+  const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+  if (!connectionString) {
+    return null;
+  }
+  return postgres(connectionString, {
+    ssl: 'require',
+    connect_timeout: 10,
+  });
+}
+
 async function getCmsData(): Promise<CmsData> {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const sql = getSql();
+  if (!sql) {
+    return {};
+  }
   
   try {
-    const [settingsRes, advantagesRes, servicesRes, testimonialsRes] = await Promise.all([
-      fetch(`${baseUrl}/api/cms?key=settings`, { cache: 'no-store' }),
-      fetch(`${baseUrl}/api/cms?key=advantages`, { cache: 'no-store' }),
-      fetch(`${baseUrl}/api/cms?key=services`, { cache: 'no-store' }),
-      fetch(`${baseUrl}/api/cms?key=testimonials`, { cache: 'no-store' }),
-    ]);
+    const settingsRows = await sql`SELECT value FROM cms_content WHERE key = 'settings'`;
+    const advantagesRows = await sql`SELECT value FROM cms_content WHERE key = 'advantages'`;
+    const servicesRows = await sql`SELECT value FROM cms_content WHERE key = 'services'`;
+    const testimonialsRows = await sql`SELECT value FROM cms_content WHERE key = 'testimonials'`;
     
-    const [settingsData, advantagesData, servicesData, testimonialsData] = await Promise.all([
-      settingsRes.ok ? settingsRes.json() : null,
-      advantagesRes.ok ? advantagesRes.json() : null,
-      servicesRes.ok ? servicesRes.json() : null,
-      testimonialsRes.ok ? testimonialsRes.json() : null,
-    ]);
+    await sql.end();
     
     return {
-      settings: settingsData?.value || {},
-      advantages: advantagesData?.value || [],
-      services: servicesData?.value || [],
-      testimonials: testimonialsData?.value || [],
+      settings: settingsRows[0]?.value || {},
+      advantages: advantagesRows[0]?.value || [],
+      services: servicesRows[0]?.value || [],
+      testimonials: testimonialsRows[0]?.value || [],
     };
   } catch (error) {
     console.error('[CMS] Error fetching CMS data:', error);
+    if (sql) await sql.end();
     return {};
   }
 }
