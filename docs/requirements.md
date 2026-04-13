@@ -79,14 +79,6 @@
 | message | TEXT | 留言内容 |
 | created_at | TIMESTAMP | 创建时间 |
 
-### admins 表（管理员）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | SERIAL | 主键 |
-| email | VARCHAR(255) | 登录邮箱 |
-| password | VARCHAR(255) | 密码（加密） |
-| created_at | TIMESTAMP | 创建时间 |
-
 ### cms_content 表（CMS内容）
 | 字段 | 类型 | 说明 |
 |------|------|------|
