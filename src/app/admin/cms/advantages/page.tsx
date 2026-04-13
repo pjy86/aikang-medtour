@@ -48,16 +48,22 @@ export default function AdminCMSAdvantages() {
       : advantages.map(a => a.id === editingId ? editData : a)
     
     try {
-      await fetch('/api/cms/advantages', {
+      const res = await fetch('/api/cms/advantages', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({key: 'advantages', value: newAdvantages}),
       })
-      setAdvantages(newAdvantages)
-      setEditingId(null)
-      setEditData(null)
+      if (res.ok) {
+        setAdvantages(newAdvantages)
+        setEditingId(null)
+        setEditData(null)
+      } else {
+        const data = await res.json()
+        alert('Error: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving:', error)
+      alert('Error saving')
     }
   }
 

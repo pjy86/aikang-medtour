@@ -50,16 +50,22 @@ export default function AdminCMSTestimonials() {
       : testimonials.map(t => t.id === editingId ? editData : t)
     
     try {
-      await fetch('/api/cms/testimonials', {
+      const res = await fetch('/api/cms/testimonials', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({key: 'testimonials', value: newData}),
       })
-      setTestimonials(newData)
-      setEditingId(null)
-      setEditData(null)
+      if (res.ok) {
+        setTestimonials(newData)
+        setEditingId(null)
+        setEditData(null)
+      } else {
+        const data = await res.json()
+        alert('Error: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving:', error)
+      alert('Error saving')
     }
   }
 

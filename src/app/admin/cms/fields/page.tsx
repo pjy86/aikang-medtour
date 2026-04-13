@@ -52,16 +52,22 @@ export default function AdminCMSFields() {
       : fields.map(f => f.id === editingId ? editData : f)
     
     try {
-      await fetch('/api/cms/fields', {
+      const res = await fetch('/api/cms/fields', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({key: 'formFields', value: newFields}),
       })
-      setFields(newFields)
-      setEditingId(null)
-      setEditData(null)
+      if (res.ok) {
+        setFields(newFields)
+        setEditingId(null)
+        setEditData(null)
+      } else {
+        const data = await res.json()
+        alert('Error: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving:', error)
+      alert('Error saving')
     }
   }
 

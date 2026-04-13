@@ -49,12 +49,17 @@ export default function AdminCMSSettings() {
   const handleSave = async () => {
     setSaving(true)
     try {
-      await fetch('/api/cms/settings', {
+      const res = await fetch('/api/cms/settings', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({key: 'settings', value: settings}),
       })
-      alert('Settings saved successfully!')
+      if (res.ok) {
+        alert('Settings saved successfully!')
+      } else {
+        const data = await res.json()
+        alert('Error: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving settings:', error)
       alert('Error saving settings')

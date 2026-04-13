@@ -51,16 +51,22 @@ export default function AdminCMSServices() {
       : services.map(s => s.id === editingId ? editData : s)
     
     try {
-      await fetch('/api/cms/services', {
+      const res = await fetch('/api/cms/services', {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({key: 'services', value: newServices}),
       })
-      setServices(newServices)
-      setEditingId(null)
-      setEditData(null)
+      if (res.ok) {
+        setServices(newServices)
+        setEditingId(null)
+        setEditData(null)
+      } else {
+        const data = await res.json()
+        alert('Error: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving:', error)
+      alert('Error saving')
     }
   }
 
